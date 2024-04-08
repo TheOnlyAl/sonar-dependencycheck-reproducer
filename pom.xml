@@ -1,0 +1,66 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>de.adteligence.sandbox</groupId>
+    <artifactId>sonar-dependencycheck-reproducer</artifactId>
+    <version>1.0.0-SNAPSHOT</version>
+    <packaging>pom</packaging>
+
+    <properties>
+        <plugin.version.sonar-maven-plugin>3.11.0.3922</plugin.version.sonar-maven-plugin>
+        <plugin.version.dependency-check-maven>9.1.0</plugin.version.dependency-check-maven>
+
+        <dependency.log4j-core.version>2.14.1</dependency.log4j-core.version>
+
+        <sonar.host.url>http://localhost:9000/</sonar.host.url>
+        <sonar.token>INSERTTOKEN</sonar.token>
+
+        <sonar.exclusions>pom.xml</sonar.exclusions>
+
+        <sonar.dependencyCheck.jsonReportPath>target/dependency-check-report.json</sonar.dependencyCheck.jsonReportPath>
+        <sonar.dependencyCheck.htmlReportPath>target/dependency-check-report.html</sonar.dependencyCheck.htmlReportPath>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.owasp</groupId>
+                <artifactId>dependency-check-maven</artifactId>
+                <version>${plugin.version.dependency-check-maven}</version>
+                <configuration>
+                    <formats>HTML,JSON</formats>
+                </configuration>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>aggregate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.sonarsource.scanner.maven</groupId>
+                <artifactId>sonar-maven-plugin</artifactId>
+                <version>${plugin.version.sonar-maven-plugin}</version>
+                <executions>
+                    <execution>
+                        <phase>verify</phase>
+                        <goals>
+                            <goal>sonar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.apache.logging.log4j</groupId>
+            <artifactId>log4j-core</artifactId>
+            <version>${dependency.log4j-core.version}</version>
+        </dependency>
+    </dependencies>
+</project>
