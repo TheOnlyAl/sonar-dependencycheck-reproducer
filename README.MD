@@ -1,6 +1,6 @@
 # Sonar Dependencycheck Reproducer
 
-This is s small reproducer project for a problem with [SonarQube](https://www.sonarsource.com/products/sonarqube/), [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/) and the [dependency-check-sonar-plugin](https://github.com/dependency-check/dependency-check-sonar-plugin).
+This is small reproducer project for a problem with [SonarQube](https://www.sonarsource.com/products/sonarqube/), [OWASP Dependency-Check](https://owasp.org/www-project-dependency-check/) and the [dependency-check-sonar-plugin](https://github.com/dependency-check/dependency-check-sonar-plugin).
 
 The problem can be seen when you try verify this project using using `mvn clean verify`.
 You will get the following error on the background task in Sonar:
